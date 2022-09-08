@@ -24,6 +24,7 @@ class Login extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { history } = this.props;
+    console.log('oi');
     // const { email, name } = this.state;
     // const hash = md5(email).toString();
     history.push('/game');
