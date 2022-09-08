@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import MultipleQuestion from '../components/MultipleQuestion';
+import Header from '../components/Header';
 
 class Login extends Component {
   constructor() {
@@ -41,7 +42,12 @@ class Login extends Component {
     const { loading, questions, count } = this.state;
     if (loading) return <Loading />;
     const question = questions[count];
-    return <MultipleQuestion question={ question } onClick={ this.onClick } />;
+    return (
+      <>
+        <Header />
+        <MultipleQuestion question={ question } onClick={ this.onClick } />
+      </>
+    );
   }
 }
 
