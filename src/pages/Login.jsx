@@ -88,6 +88,17 @@ class Login extends Component {
           >
             Play
           </button>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ () => {
+              const { history } = this.props;
+              history.push('/settings');
+            } }
+          >
+            Settings
+
+          </button>
         </form>
       </div>
     );
