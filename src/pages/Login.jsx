@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import md5 from 'crypto-js/md5';
-// import { userLogin } from '../redux/actions';
+import { userLogin } from '../redux/actions';
 
 class Login extends Component {
   constructor() {
@@ -11,8 +11,15 @@ class Login extends Component {
       isDisabled: true,
       email: '',
       name: '',
+      token: '',
     };
   }
+
+  fetchToken = async () => {
+    const returnFetch = await fetch('https://opentdb.com/api_token.php?command=request');
+    const data = await returnFetch.json();
+    return data.token;
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -23,11 +30,17 @@ class Login extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { history } = this.props;
-    console.log('oi');
-    // const { email, name } = this.state;
-    // const hash = md5(email).toString();
-    history.push('/game');
+    const { history, dispatch } = this.props;
+    const { email, name } = this.state;
+    const retorno = await this.fetchToken();
+    dispatch(userLogin({ email, name }));
+    this.setState({
+      token: retorno,
+    }, () => {
+      const { token } = this.state;
+      localStorage.setItem('token', token);
+      history.push('/game');
+    });
   };
 
   validateForm() {
@@ -75,6 +88,17 @@ class Login extends Component {
           >
             Play
           </button>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ () => {
+              const { history } = this.props;
+              history.push('/settings');
+            } }
+          >
+            Settings
+
+          </button>
         </form>
       </div>
     );
@@ -82,7 +106,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
