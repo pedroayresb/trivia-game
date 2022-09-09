@@ -26,8 +26,7 @@ class Header extends React.Component {
           value="score"
           data-testid="header-score"
         >
-          Score:
-          {score}
+          { score }
         </p>
         <p>
           Assertions:
