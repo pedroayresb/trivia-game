@@ -2,21 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addScore } from '../redux/actions';
+import shuffle from '../services/shuffle';
 import '../styles/questions.css';
-
-function shuffle(array) {
-  let currentIndex = array.length; let
-    randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
 
 class MultipleQuestion extends Component {
   constructor() {

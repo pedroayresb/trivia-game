@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import md5 from 'crypto-js/md5';
 import Loading from '../components/Loading';
 import MultipleQuestion from '../components/MultipleQuestion';
 import Header from '../components/Header';
+import { saveRanking } from '../services/localstorage';
 
 class Game extends Component {
   constructor() {
@@ -44,6 +47,15 @@ class Game extends Component {
     }, () => {
       const MAX_QUESTIONS = 4;
       if (count === MAX_QUESTIONS) {
+        const { gravatarEmail, name, score, assertions } = this.props;
+        console.log(gravatarEmail, name, score, assertions);
+        const ranking = {
+          name,
+          score,
+          picture: `https://www.gravatar.com/avatar/${md5(gravatarEmail).toString()}`,
+          assertions,
+        };
+        saveRanking(ranking);
         const { history } = this.props;
         history.push('/feedback');
       }
@@ -83,6 +95,17 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  gravatarEmail: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  assertions: PropTypes.number.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
-export default Game;
+const mapStateToProps = (state) => ({
+  gravatarEmail: state.player.gravatarEmail,
+  name: state.player.name,
+  assertions: state.player.assertions,
+  score: state.player.score,
+});
+
+export default connect(mapStateToProps, null)(Game);
