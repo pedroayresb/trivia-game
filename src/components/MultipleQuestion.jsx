@@ -183,10 +183,10 @@ MultipleQuestion.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  gravatarEmail: state.user.gravatarEmail,
-  name: state.user.name,
-  assertions: state.user.assertions,
-  score: state.user.score,
+  gravatarEmail: state.player.gravatarEmail,
+  name: state.player.name,
+  assertions: state.player.assertions,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps, null)(MultipleQuestion);
