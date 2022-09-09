@@ -10,9 +10,11 @@ class Login extends Component {
       loading: true,
       questions: [],
       count: 0,
+      display: false,
     };
 
     this.onClick = this.onClick.bind(this);
+    this.onAnswer = this.onAnswer.bind(this);
   }
 
   async componentDidMount() {
@@ -30,18 +32,47 @@ class Login extends Component {
     }
   }
 
+  onAnswer() {
+    this.setState({ display: true });
+  }
+
   onClick() {
     const { count } = this.state;
     this.setState({
-      count: count + 1,
+      loading: true,
+    }, () => {
+      const MAX_QUESTIONS = 4;
+      if (count === MAX_QUESTIONS) {
+        const { history } = this.props;
+        history.push('/feedback');
+      }
+      this.setState({
+        count: count + 1,
+        loading: false,
+        display: false,
+      });
     });
   }
 
   render() {
-    const { loading, questions, count } = this.state;
+    const { loading, questions, count, display } = this.state;
     if (loading) return <Loading />;
     const question = questions[count];
-    return <MultipleQuestion question={ question } onClick={ this.onClick } />;
+    return (
+      <div>
+        <MultipleQuestion question={ question } onAnswer={ this.onAnswer } />
+        {display ? (
+          <button
+            type="button"
+            onClick={ this.onClick }
+            data-testid="btn-next"
+            display={ display }
+          >
+            Next
+          </button>)
+          : null}
+      </div>
+    );
   }
 }
 
