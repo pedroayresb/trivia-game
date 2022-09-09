@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import MultipleQuestion from '../components/MultipleQuestion';
+import Header from '../components/Header';
 
 class Login extends Component {
   constructor() {
@@ -60,6 +61,7 @@ class Login extends Component {
     const question = questions[count];
     return (
       <div>
+        <Header />
         <MultipleQuestion question={ question } onAnswer={ this.onAnswer } />
         {display ? (
           <button
@@ -72,6 +74,7 @@ class Login extends Component {
           </button>)
           : null}
       </div>
+
     );
   }
 }
