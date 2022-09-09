@@ -9,7 +9,7 @@ class Login extends Component {
     super();
     this.state = {
       isDisabled: true,
-      email: '',
+      gravatarEmail: '',
       name: '',
       token: '',
     };
@@ -31,9 +31,9 @@ class Login extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { history, dispatch } = this.props;
-    const { email, name } = this.state;
+    const { gravatarEmail, name } = this.state;
     const retorno = await this.fetchToken();
-    dispatch(userLogin({ email, name }));
+    dispatch(userLogin({ gravatarEmail, name, assertions: 0, score: 0 }));
     this.setState({
       token: retorno,
     }, () => {
@@ -44,10 +44,10 @@ class Login extends Component {
   };
 
   validateForm() {
-    const { email, name } = this.state;
+    const { gravatarEmail, name } = this.state;
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const minNameLength = 1;
-    const isEmailValid = emailRegex.test(email);
+    const isEmailValid = emailRegex.test(gravatarEmail);
     const isNameValid = name.length >= minNameLength;
     this.setState({
       isDisabled: !(isEmailValid && isNameValid),
@@ -64,8 +64,8 @@ class Login extends Component {
             Email:
             <input
               type="email"
-              name="email"
-              id="email"
+              name="gravatarEmail"
+              id="gravatarEmail"
               data-testid="input-gravatar-email"
               onChange={ this.handleChange }
             />
