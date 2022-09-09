@@ -60,7 +60,7 @@ class Login extends Component {
       <div>
         <h1>Login</h1>
         <form>
-          <label htmlFor="email">
+          <label htmlFor="gravatarEmail">
             Email:
             <input
               type="email"
