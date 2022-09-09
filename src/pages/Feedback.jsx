@@ -12,6 +12,7 @@ class Feedback extends Component {
     } return 'Well Done!';
   };
 
+class Feedback extends Component {
   render() {
     const { assertions, score } = this.props;
     return (
