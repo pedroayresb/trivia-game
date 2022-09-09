@@ -31,6 +31,7 @@ class Header extends React.Component {
         </p>
         <p>
           Assertions:
+          {' '}
           {assertions}
         </p>
       </div>
