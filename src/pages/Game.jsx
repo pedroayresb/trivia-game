@@ -34,7 +34,7 @@ class Login extends Component {
   }
 
   onAnswer() {
-    this.setState({ display: true });
+    this.setState({ display: 'inline' });
   }
 
   onClick() {

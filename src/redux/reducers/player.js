@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   score: 0,
 };
 
-function user(state = INITIAL_STATE, action) {
+function player(state = INITIAL_STATE, action) {
   switch (action.type) {
   case USER_LOGIN:
     return { ...state, ...action.payload };
@@ -18,4 +18,4 @@ function user(state = INITIAL_STATE, action) {
   }
 }
 
-export default user;
+export default player;

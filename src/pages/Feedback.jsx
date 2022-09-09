@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Login extends Component {
   render() {
     return (
-      <h1>Feedback</h1>
+      <h1 data-testid="feedback-text">Feedback</h1>
     );
   }
 }
