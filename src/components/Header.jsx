@@ -5,9 +5,7 @@ import md5 from 'crypto-js/md5';
 
 class Header extends React.Component {
   render() {
-    const { name, email } = this.props;
-
-    // console.log(name);
+    const { name, email, score, assertions } = this.props;
 
     return (
       <div>
@@ -28,10 +26,13 @@ class Header extends React.Component {
           value="score"
           data-testid="header-score"
         >
-          Seu placar: 0
-          {/* {score} */}
+          Score:
+          {score}
         </p>
-
+        <p>
+          Assertions:
+          {assertions}
+        </p>
       </div>
     );
   }
@@ -40,12 +41,15 @@ class Header extends React.Component {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  // score: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  score: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  assertions: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   name: state.user.name,
   email: state.user.email,
+  score: state.user.score,
+  assertions: state.user.assertions,
 });
 
 export default connect(mapStateToProps)(Header);
