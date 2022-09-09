@@ -12,7 +12,6 @@ class Feedback extends Component {
     } return 'Well Done!';
   };
 
-class Feedback extends Component {
   render() {
     const { assertions, score } = this.props;
     return (
@@ -62,4 +61,5 @@ function mapStateToProps(state) {
     score: state.player.score,
   };
 }
+
 export default connect(mapStateToProps)(Feedback);
