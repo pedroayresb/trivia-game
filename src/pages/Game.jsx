@@ -4,7 +4,7 @@ import Loading from '../components/Loading';
 import MultipleQuestion from '../components/MultipleQuestion';
 import Header from '../components/Header';
 
-class Login extends Component {
+class Game extends Component {
   constructor() {
     super();
     this.state = {
@@ -79,10 +79,10 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
+Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default Login;
+export default Game;
