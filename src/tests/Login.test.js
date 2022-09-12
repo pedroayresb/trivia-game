@@ -38,7 +38,7 @@ describe('Testa o componente <Login />', () => {
     expect(nameInput.value).toBe('usuario')
   });
 
-  test('Testa se ao clicaer no botão play o usuário é redirecionado para a página Game', async () => {
+  test('Testa se ao clicar no botão play o usuário é redirecionado para a página Game', async () => {
     const { history } = renderWithRouterAndRedux(<App />);
 
     const playButton = screen.getByRole('button', { name: /play/i });
