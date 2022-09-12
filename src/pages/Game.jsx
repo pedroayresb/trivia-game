@@ -48,7 +48,6 @@ class Game extends Component {
       const MAX_QUESTIONS = 4;
       if (count === MAX_QUESTIONS) {
         const { gravatarEmail, name, score, assertions } = this.props;
-        console.log(gravatarEmail, name, score, assertions);
         const ranking = {
           name,
           score,

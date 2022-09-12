@@ -90,7 +90,7 @@ class MultipleQuestion extends Component {
         dispatch(addScore(dispatchObj));
         this.setState({ status: 'Correct!', time: `Correct Answer: ${correctAnswer}` });
       } else {
-        this.setState({ status: 'Wrong!' });
+        this.setState({ status: 'Wrong!', time: `Correct Answer: ${correctAnswer}` });
       }
     });
   };
@@ -110,7 +110,7 @@ class MultipleQuestion extends Component {
     };
     return (
       <div>
-        <h1>{time}</h1>
+        <h1>{ time }</h1>
         <p>{ status }</p>
         <h1 data-testid="question-category">{category}</h1>
         <h2 data-testid="question-text">{questionText}</h2>
